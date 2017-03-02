@@ -97,7 +97,7 @@ function getHtmlCNPJ($cnpj, $captcha)
 // função para pegar a resposta html da consulta pelo CPF na página da receita
 function getHtmlCPF($cpf, $datanascim, $captcha)
 {
-	$url = 'https://www.receita.fazenda.gov.br/Aplicacoes/SSL/ATCTA/CPF/ConsultaPublicaExibir.asp';	// nova URL (https) SSL para consulta CPF
+    $url = 'https://www.receita.fazenda.gov.br/Aplicacoes/SSL/ATCTA/CPF/ConsultaSituacao/ConsultaPublicaExibir.asp';
 	
     $cookieFile = COOKIELOCAL.'cpf_'.session_id();
 	$cookieFile_fopen = HTTPCOOKIELOCAL.'cpf_'.session_id();
@@ -144,8 +144,11 @@ function getHtmlCPF($cpf, $datanascim, $captcha)
     curl_setopt($ch, CURLOPT_COOKIE, $cookie);			// continua a sessão anterior com os dados do captcha
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
     curl_setopt($ch, CURLOPT_MAXREDIRS, 3);
-    curl_setopt($ch, CURLOPT_REFERER, 'https://www.receita.fazenda.gov.br/Aplicacoes/SSL/ATCTA/CPF/ConsultaPublica.asp');						  
+    
+    curl_setopt($ch, CURLOPT_REFERER, 'http://www.receita.fazenda.gov.br/Aplicacoes/ATCTA/CPf/ConsultaPublicaExibir.asp');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_0);	
+	
     $html = curl_exec($ch);
     curl_close($ch);
 	

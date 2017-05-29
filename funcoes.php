@@ -226,9 +226,10 @@ function parseHtmlCNPJ($html)
 function parseHtmlCPF($html)
 {
 	// respostas que interessam
+	//Nova alteração da receita
 	$campos = array(
 	'No do CPF:',
-	'Nome da Pessoa Física:',
+	'Nome:',
 	'Data de Nascimento:',
 	'Situação Cadastral:',
 	'Data da Inscrição:'
